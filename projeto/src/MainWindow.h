@@ -16,8 +16,6 @@ public:
     MainWindow();
     
 private:
-   CommandQueue *fila;
-   RenderPanel* centralpanel;
    QFileDialog *fdo;
    QFileDialog *fds;
    QToolBar * tb;

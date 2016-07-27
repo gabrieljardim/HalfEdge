@@ -53,69 +53,18 @@ TARGET = halfedge
 
 # # ADICIONEM OS ARQUIVOS AQUI ##
 # Arquivos .h
-HEADERS += src/camara.h \
-    src/CaixaParalela.h \
-    src/PlanoX.h \
-    src/PlanoY.h \
-    src/PlanoZ.h \
-    src/Raio.h \
-    src/Vetor_3d.h \
-    src/Cor_rgb.h \
-    src/Objeto_3d.h \
-    src/Esfera.h \
-    src/Triangulo.h \
-    src/Plano.h \
-    src/cenario.h \
-    src/io.h \
-    src/material.h \
-    src/Trab3FT.h \
-    src/PlyParser.h \
+HEADERS += \
     src/MainWindow.h \
-    src/RenderPanel.h \
-    src/Render.h \
-    src/CommandQueue.h \
-    src/TriangleMesh.h \
-    src/Ponto_3D.h \
-    src/TexturePoint.h \
-    src/intersection.h \
-    src/Luz.h \
-    point.h \
-    edge.h \
-    src/point.h \
     src/edge.h \
-    src/halfedge.h
+    src/halfedge.h \
+    src/point.h
 
 # Arquivos .cpp
-SOURCES += src/camara.cpp \
-    src/CaixaParalela.cpp \
-    src/PlanoX.cpp \
-    src/PlanoY.cpp \
-    src/PlanoZ.cpp \
-    src/Raio.cpp \
-    src/Vetor_3d.cpp \
-    src/Cor_rgb.cpp \
-    src/Esfera.cpp \
-    src/Triangulo.cpp \
-    src/cenario.cpp \
-    src/io.cpp \
-    src/material.cpp \
-    src/Trab3FT.cpp \
-    src/PlyParser.cpp \
+SOURCES += \
     src/MainWindow.cpp \
-    src/RenderPanel.cpp \
-    src/Render.cpp \
-    src/CommandQueue.cpp \
-    src/TriangleMesh.cpp \
-    src/TexturePoint.cpp \
-    src/intersection.cpp \
-    src/Objeto_3d.cpp \
-    src/Plano.cpp \
-    src/Luz.cpp \
-    point.cpp \
-    edge.cpp \
     src/edge.cpp \
-    src/point.cpp \
-    src/halfedge.cpp
+    src/halfedge.cpp \
+    src/point.cpp
 
 # Arquivos dos resources (imagens por exemplo)
 RESOURCES += halfedge.qrc

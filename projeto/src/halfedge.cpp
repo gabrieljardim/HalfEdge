@@ -1,11 +1,11 @@
 #include "halfedge.h"
 
-halfedge::halfedge()
+HalfEdge::HalfEdge()
 {
 
 }
 
-halfedge::~halfedge()
+HalfEdge::~HalfEdge()
 {
 
 }
