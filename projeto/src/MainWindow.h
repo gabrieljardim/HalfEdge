@@ -6,23 +6,13 @@
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
-   
-public slots:
-    void update(void);
-    void clicou(QAction* a);
-    void recebeArquivo(const QString &);
 
 public:
-    MainWindow();
+    MainWindow();    
+    void recebeArquivo(const QString &);
     
 private:
-   QFileDialog *fdo;
-   QFileDialog *fds;
-   QToolBar * tb;
-   QAction *open;
-   QAction *save;
-   WidgetTest *widgetTest;
+   HalfEdgeWidget *widgetTest;
 };
 
 

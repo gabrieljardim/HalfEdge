@@ -6,23 +6,26 @@
 #include <QDebug>
 #include <QSet>
 
-WidgetTest::WidgetTest(QWidget* parent) : QWidget(parent)
+HalfEdgeWidget::HalfEdgeWidget(QWidget* parent) : QWidget(parent), m_edge(nullptr)
 {
-    this->m_edge = nullptr;
+
 }
 
-void WidgetTest::paintEvent(QPaintEvent *event)
+void HalfEdgeWidget::paintEvent(QPaintEvent *event)
 {
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing);
+    if(m_edge != nullptr)
+    {
+        QPainter painter(this);
+        painter.setRenderHint(QPainter::Antialiasing);
 
-    QSet<Face*>* mySet = new QSet<Face*>;
-    drawMesh(mySet, m_edge, painter);
-    mySet->clear();
-    delete mySet;
+        QSet<Face*>* mySet = new QSet<Face*>;
+        drawMesh(mySet, m_edge, painter);
+        mySet->clear();
+        delete mySet;
+    }
 }
 
-void WidgetTest::drawMesh(QSet<Face*>* set, HalfEdge* edge, QPainter& painter)
+void HalfEdgeWidget::drawMesh(QSet<Face*>* set, HalfEdge* edge, QPainter& painter)
 {
     HalfEdge* auxEdge = edge;
     int i = 0;
@@ -30,14 +33,14 @@ void WidgetTest::drawMesh(QSet<Face*>* set, HalfEdge* edge, QPainter& painter)
     if(auxEdge == nullptr)
         return;
 
-    qDebug() << "Minha face: " << auxEdge->face;
+    //qDebug() << "Minha face: " << auxEdge->face;
 
     //insere no conjunto a face caso já não exista
     set->insert(auxEdge->face);
 
     do
     {
-        qDebug() << "Iterations: " << i++;
+        //qDebug() << "Iterations: " << i++;
 
         if(auxEdge->vertex != nullptr)
         {
@@ -54,41 +57,24 @@ void WidgetTest::drawMesh(QSet<Face*>* set, HalfEdge* edge, QPainter& painter)
         }
         if(auxEdge->twin != nullptr)
         {
-            qDebug() << "Achei meu twin";
+            //qDebug() << "Achei meu twin";
             if(!set->contains(auxEdge->twin->face))
             {
-                qDebug() << "Nunca vi essa face";
+                //qDebug() << "Nunca vi essa face";
                  drawMesh(set, auxEdge->twin, painter);
             }
-            else
-                qDebug() << "Ja visitei esse jovem";
+            //else
+                //qDebug() << "Ja visitei esse jovem";
         }
 
         auxEdge = auxEdge->next;
 
     } while((auxEdge != nullptr) && (auxEdge != edge));
 
-    qDebug() << *set;
+    //qDebug() << *set;
 }
 
-void WidgetTest::leArquivo(const QString &filename)
+void HalfEdgeWidget::leArquivo(const QString &filename)
 {
     LeArquivo(filename, &m_edge);
-    repaint();
 }
-
-/*ideia do algoritmo para senhar
- *
- * algoritmo recursivo
- *
- * coloca face atual na lista de visitados
- * ve se existe twin da aresta atual
- * se existir chama função recursiva com esse twin, set de faces visitadas
- * senão desenha e vai pra next
- * retorna quando aux = half edge inicial
- *
- *
- *
- *
- *
- * */

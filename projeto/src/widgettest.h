@@ -8,10 +8,11 @@
 struct HalfEdge;
 struct Face;
 
-class WidgetTest : public QWidget
+class HalfEdgeWidget : public QWidget
 {
+
 public:
-    WidgetTest(QWidget* parent);
+    HalfEdgeWidget(QWidget* parent);
     void paintEvent(QPaintEvent *event);
     void drawMesh(QSet<Face*>*set, HalfEdge* edge, QPainter& painter);
     void leArquivo(const QString &filename);
