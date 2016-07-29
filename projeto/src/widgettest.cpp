@@ -117,7 +117,7 @@ void WidgetTest::drawMesh(QSet<Face*>* set, HalfEdge* edge, QPainter& painter)
     qDebug() << *set;
 }
 
-void WidgetTest::recebeArquivo(const QString &filename)
+void WidgetTest::leArquivo(const QString &filename)
 {
     LeArquivo(filename, &this->m_edge);
 }

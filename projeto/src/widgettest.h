@@ -14,9 +14,7 @@ public:
     WidgetTest(QWidget* parent);
     void paintEvent(QPaintEvent *event);
     void drawMesh(QSet<Face*>*set, HalfEdge* edge, QPainter& painter);
-
-public slots:
-    void recebeArquivo(const QString &);
+    void leArquivo(const QString &filename);
 
 private:
     HalfEdge* m_edge;

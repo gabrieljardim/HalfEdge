@@ -20,7 +20,7 @@ MainWindow::MainWindow()
     fdo->setNameFilter("*.dat");
     
     connect(tb, SIGNAL(actionTriggered( QAction * )), this, SLOT(clicou(QAction*)));
-    //connect(fdo, SIGNAL(fileSelected(const QString &)), widgetTest, SLOT(recebeArquivo(const QString &)));
+    connect(fdo, SIGNAL(fileSelected(const QString &)), this, SLOT(recebeArquivo(const QString &)));
     
     open = tb->addAction(op, "");
 
@@ -43,6 +43,11 @@ void MainWindow::clicou(QAction* a)
         fdo->setAcceptMode(QFileDialog::AcceptOpen);
         fdo->open();
     }
+}
+
+void MainWindow::recebeArquivo(const QString &filename)
+{
+    widgetTest->leArquivo(filename);
 }
 
 void MainWindow::update(void)

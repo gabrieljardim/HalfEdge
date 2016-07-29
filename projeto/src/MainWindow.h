@@ -11,6 +11,7 @@ class MainWindow : public QMainWindow
 public slots:
     void update(void);
     void clicou(QAction* a);
+    void recebeArquivo(const QString &);
 
 public:
     MainWindow();
