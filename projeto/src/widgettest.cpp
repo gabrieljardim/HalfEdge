@@ -7,10 +7,9 @@
 
 WidgetTest::WidgetTest(QWidget* parent) : QWidget(parent)
 {
-   //teste para desenhar malha
-   Face* face1 = new Face();
+   /*Face* face1 = new Face();
 
-   HalfEdge* edge1 = new HalfEdge(face1, new Vertex(30,50), nullptr, nullptr);
+   HalfEdge* edge1 = new HalfEdge(face1, new Vertex(30, 50), nullptr, nullptr);
    HalfEdge* edge2 = new HalfEdge(face1, new Vertex(150, 50), nullptr, nullptr);
    HalfEdge* edge3 = new HalfEdge(face1, new Vertex(90, 100), nullptr, nullptr);
 
@@ -23,7 +22,7 @@ WidgetTest::WidgetTest(QWidget* parent) : QWidget(parent)
    edge2->next = edge3;
    edge3->next = edge1;
 
-   this->m_edge = edge1;
+   this->m_edge = edge1;*/
 }
 
 void WidgetTest::paintEvent(QPaintEvent *event)
@@ -36,8 +35,7 @@ void WidgetTest::drawMesh(QPainter& painter)
 {
     HalfEdge* auxEdge = m_edge;
 
-    if(auxEdge == nullptr)
-        return;
+    if(auxEdge == nullptr) return;
 
     do
     {
@@ -58,14 +56,11 @@ void WidgetTest::drawMesh(QPainter& painter)
         auxEdge = auxEdge->next;
 
     } while((auxEdge != nullptr) && (auxEdge != m_edge));
+
     qDebug() << "DrawMesh";
 }
 
-
-/*
- * if()
- *
- *
- *
- *
- * */
+void WidgetTest::recebeArquivo(const QString &filename)
+{
+    LeArquivo(filename, &this->m_edge);
+}

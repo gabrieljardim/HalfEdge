@@ -22,7 +22,6 @@ private:
    QAction *open;
    QAction *save;
    WidgetTest *widgetTest;
-
 };
 
 
