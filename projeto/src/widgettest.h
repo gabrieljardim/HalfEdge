@@ -2,19 +2,20 @@
 #define WIDGETTEST_H
 
 #include <QWidget>
+#include <QSet>
 #include "io.h"
 
 struct HalfEdge;
-class QPainter;
+struct Face;
 
 class WidgetTest : public QWidget
 {
 public:
     WidgetTest(QWidget* parent);
-    void paintEvent(QPaintEvent *event);
-    void drawMesh(QPainter& painter);
+    void paintEvent();
+    void drawMesh(QSet<Face*>*set, HalfEdge* edge, QPainter& painter);
 
-signals:
+public slots:
     void recebeArquivo(const QString &);
 
 private:
