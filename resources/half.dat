@@ -1,4 +1,22 @@
 RT 1.0
-
+!Lista de todos os vertices usados por todas as faces
+#VERTEX
+30 50 150 50 90 100 180 150 250 120
+!Referenciando vertices da lista de vertices
 #FACE
-30 50 150 50 90 100
+1 2 3
+!Referenciando vertices da face
+#NEXT
+2 3 1
+!Referenciando vertices da lista de vertices
+#FACE
+2 3 4 5
+!Referenciando vertices da face
+#NEXT
+4 1 2 3
+!Referenciando vertices da lista de vertices
+#TWIN
+0 5 0
+!Referenciando vertices da lista de vertices
+#TWIN
+0 0 0 0

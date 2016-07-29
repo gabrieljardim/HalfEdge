@@ -6,6 +6,7 @@ struct Point
 {
     Point();
     Point(float x, float y);
+    Point(const Point& other);
     ~Point();
 
     float x;

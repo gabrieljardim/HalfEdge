@@ -9,6 +9,7 @@ struct HalfEdge
 {
 
     HalfEdge();    
+    HalfEdge(Face* argFace, Vertex* argVertex );
     HalfEdge(Face* argFace, Vertex* argVertex, HalfEdge* argNext, HalfEdge* argTwin );
     ~HalfEdge();
 

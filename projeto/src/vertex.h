@@ -9,6 +9,7 @@ struct Vertex
 {
     Vertex();
     Vertex(int x, int y);
+    Vertex(const Vertex& other);
     Point point;
     HalfEdge* edge;
     ~Vertex();

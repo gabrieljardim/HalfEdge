@@ -6,6 +6,11 @@ HalfEdge::HalfEdge() : face(nullptr), vertex(nullptr), next(nullptr), twin(nullp
 {
 
 }
+HalfEdge::HalfEdge(Face* argFace, Vertex* argVertex )
+    : face(argFace), vertex(argVertex), next(nullptr), twin(nullptr)
+{
+
+}
 HalfEdge::HalfEdge(Face* argFace, Vertex* argVertex, HalfEdge* argNext, HalfEdge* argTwin )
     : face(argFace), vertex(argVertex), next(argNext), twin(argTwin)
 {

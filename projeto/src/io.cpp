@@ -1,7 +1,8 @@
 ﻿#include <QTextStream>
 #include <QString>
+#include <QDebug>
 #include <QFile>
-#include <list>
+#include <QMap>
 
 #include "io.h"
 #include "face.h"
@@ -9,12 +10,26 @@
 
 using namespace std;
 
+QMap<Face*, QList<HalfEdge*>> face_edge_map;
+QList<HalfEdge*> edge_list;
+QList<Vertex*> vertex_list;
+HalfEdge* edge;
+Face* face;
+
+int face_counter;
+
 bool LeArquivo(const QString& filename, HalfEdge** out)
 {
     QFile arqdat(filename);
-    tok tag;
     QString linha;
     QChar it;
+    tok tag;
+
+    face_edge_map.clear();
+    vertex_list.clear();
+    edge_list.clear();
+
+    face_counter = -1;
 
     arqdat.open(QIODevice::ReadOnly);
     QTextStream stream(&arqdat);
@@ -43,7 +58,7 @@ bool LeArquivo(const QString& filename, HalfEdge** out)
         }
         else if (it != ';' && it != '!')
         {
-            *out = LeInfo(tag, s);
+            LeInfo(tag, s);
         }
 
         linha = stream.readLine();
@@ -51,52 +66,96 @@ bool LeArquivo(const QString& filename, HalfEdge** out)
 
     arqdat.close();
 
+    *out = face_edge_map.first().at(0);
+
     return true;
 }
 
 tok Token(const QString& linha)
 {
+    if(linha == "#VERTEX") return tok_VERTEX;
+
     if(linha == "#FACE") return tok_FACE;
+
+    if(linha == "#NEXT") return tok_NEXT;
+
+    if(linha == "#TWIN") return tok_TWIN;
 
     return tok_DESCONHECIDO;
 }
 
-HalfEdge* LeInfo(tok tag, QTextStream& linha)
+void LeInfo(tok tag, QTextStream& linha)
 {
-    Face* face;
-    Vertex* vertex;
-    //List<HalfEdge*> vertex_list;
+    QList<HalfEdge*> local_edge_list;
+    int i, j, vertex_number;
+    char p;
 
     switch(tag)
     {
+        case tok_VERTEX:
+            while (!linha.atEnd()) vertex_list.append(LeVertice(linha));
+
+            return;
         case tok_FACE:
             face = new Face();
 
-            vertex = LePonto(linha);
-            HalfEdge* edge1 = new HalfEdge(face, vertex, nullptr, nullptr);
+            while (!linha.atEnd())
+            {
+                linha >> vertex_number >> p;
+                edge = new HalfEdge(face, new Vertex(*vertex_list.at(vertex_number - 1)));
+                edge->vertex->edge = edge;
 
-            vertex = LePonto(linha);
-            HalfEdge* edge2 = new HalfEdge(face, vertex, nullptr, nullptr);
+                if (local_edge_list.isEmpty()) face->edge = edge;
+                local_edge_list.append(edge);
+                edge_list.append(edge);
+            }
 
-            vertex = LePonto(linha);
-            HalfEdge* edge3 = new HalfEdge(face, vertex, nullptr, nullptr);
+            face_edge_map.insert(face, local_edge_list);
 
-            edge1->vertex->edge = edge1;
-            edge2->vertex->edge = edge2;
-            edge3->vertex->edge = edge3;
+            return;
+        case tok_NEXT:
+            i = 0;
 
-            face->edge = edge1;
-            edge1->next = edge2;
-            edge2->next = edge3;
-            edge3->next = edge1;
+            while (!linha.atEnd())
+            {
+                linha >> vertex_number >> p;
+                face_edge_map.value(face).at(i)->next = face_edge_map.value(face).at(vertex_number - 1);
 
-            return edge1;
+                i++;
+            }
+
+            return;
+        case tok_TWIN:
+            i = 0;
+            j = 0;
+            face_counter++;
+
+            while (!linha.atEnd())
+            {
+                linha >> vertex_number >> p;
+
+                if (vertex_number != 0)
+                {
+                    for (QList<HalfEdge*> lst : face_edge_map.values())
+                    {
+                        if (j == face_counter)
+                        {
+                            lst.at(i)->twin = edge_list.at(vertex_number - 1);
+                            break;
+                        }
+
+                        j++;
+                    }
+                }
+
+                i++;
+            }
     }
 
-    return nullptr;
+    return;
 }
 
-Vertex* LePonto(QTextStream& linha)
+Vertex* LeVertice(QTextStream& linha)
 {
     float x, y;
     char p;
