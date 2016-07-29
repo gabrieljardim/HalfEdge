@@ -7,21 +7,24 @@ MainWindow::MainWindow()
     QIcon op(":open");
     QIcon sv(":save");
 
-
-
     int w = 700;
     int h = 700;
 
     //setCentralWidget(centralpanel);
 
+
+    widgetTest = new WidgetTest(this);
     tb = new QToolBar("Tool Bar", this);
     fdo = new QFileDialog(this, Qt::Window);
     fds = new QFileDialog(this, Qt::Window);
+
+
     fdo->setDirectory("..");
     fdo->setNameFilter("*.dat");
 
     fds->setDirectory("..");
     fds->setNameFilter("*.png");
+
 
     
     connect(tb, SIGNAL(actionTriggered( QAction * )), this, SLOT(clicou(QAction*)));
@@ -38,6 +41,11 @@ MainWindow::MainWindow()
 
     setWindowTitle("QT Raytrace 0.1");
     setFixedSize(w, h);
+
+
+    widgetTest->resize(300,300);
+    widgetTest->move(tb->width(), 0);
+    widgetTest->show();
 }
 
 void MainWindow::clicou(QAction* a)
@@ -60,3 +68,4 @@ void MainWindow::update(void)
     repaint();
     qDebug() << "HelloWorld";
 }
+

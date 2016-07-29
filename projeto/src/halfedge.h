@@ -1,19 +1,21 @@
 #ifndef HALFEDGE_H
 #define HALFEDGE_H
 
-class Edge;
 
-class HalfEdge
+struct Vertex;
+struct Face;
+
+struct HalfEdge
 {
 
-public:
-    HalfEdge();
+    HalfEdge();    
+    HalfEdge(Face* argFace, Vertex* argVertex, HalfEdge* argNext, HalfEdge* argTwin );
     ~HalfEdge();
 
-private:
-    Edge* m_prev;
-    Edge* m_next;
-    Edge* m_twin;
+    Face* face;
+    Vertex* vertex;
+    HalfEdge* next;
+    HalfEdge* twin;
 
 };
 

@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QtWidgets>
-#include <RenderPanel.h>
+#include "widgettest.h"
 
 class MainWindow : public QMainWindow
 {
@@ -21,6 +21,7 @@ private:
    QToolBar * tb;
    QAction *open;
    QAction *save;
+   WidgetTest *widgetTest;
 
 };
 

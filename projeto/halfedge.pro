@@ -55,16 +55,21 @@ TARGET = halfedge
 # Arquivos .h
 HEADERS += \
     src/MainWindow.h \
-    src/edge.h \
     src/halfedge.h \
-    src/point.h
+    src/point.h \
+    src/widgettest.h \
+    src/vertex.h \
+    src/face.h
 
 # Arquivos .cpp
 SOURCES += \
     src/MainWindow.cpp \
-    src/edge.cpp \
     src/halfedge.cpp \
-    src/point.cpp
+    src/point.cpp \
+    src/widgettest.cpp \
+    src/main.cpp \
+    src/vertex.cpp \
+    src/face.cpp
 
 # Arquivos dos resources (imagens por exemplo)
 RESOURCES += halfedge.qrc
