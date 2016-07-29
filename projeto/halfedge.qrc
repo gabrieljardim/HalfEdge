@@ -1,7 +1,5 @@
 <RCC>
-    <qresource prefix="/" >
-        <file alias="open" >imgs/open.png</file>
-        <file alias="save" >imgs/save.png</file> 
-		<file alias="halfEdgeFile" >rsrc/half.dat</file>
+    <qresource prefix="/">
+        <file alias="halfEdgeFile">rsrc/half.dat</file>
     </qresource>
 </RCC>

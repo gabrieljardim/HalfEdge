@@ -1,4 +1,4 @@
-#include "widgettest.h"
+#include "halfedgewidget.h"
 #include "halfedge.h"
 #include "face.h"
 #include "vertex.h"
@@ -9,6 +9,56 @@
 HalfEdgeWidget::HalfEdgeWidget(QWidget* parent) : QWidget(parent), m_edge(nullptr)
 {
 
+    //Descomentar em caso do bug na leitura do arquivo
+
+    /*
+
+    //teste para desenhar malha
+
+    Face* face1 = new Face();
+    Face* face2 = new Face();
+
+    Vertex* vertex1 = new Vertex(30,50);
+    Vertex* vertex2 = new Vertex(150, 50);
+    Vertex* vertex3 = new Vertex(90, 100);
+
+    Vertex* vertex4 = new Vertex(180, 150);
+    Vertex* vertex5 = new Vertex(250, 120);
+
+    HalfEdge* edge1 = new HalfEdge(face1, vertex1, nullptr, nullptr);
+    HalfEdge* edge2 = new HalfEdge(face1, vertex2, nullptr, nullptr);
+    HalfEdge* edge3 = new HalfEdge(face1, vertex3, nullptr, nullptr);
+
+    HalfEdge* edge4 = new HalfEdge(face2, vertex2, nullptr, nullptr);
+    HalfEdge* edge5 = new HalfEdge(face2, vertex3, edge2, nullptr);
+    HalfEdge* edge6 = new HalfEdge(face2, vertex4, nullptr, nullptr);
+    HalfEdge* edge7 = new HalfEdge(face2, vertex5, nullptr, nullptr);
+
+
+
+    face1->edge = edge1;
+    face2->edge = edge5;
+
+    edge1->vertex->edge = edge1;
+    edge2->vertex->edge = edge2;
+    edge3->vertex->edge = edge3;
+    edge5->vertex->edge = edge5;
+    edge6->vertex->edge = edge6;
+    edge7->vertex->edge = edge7;
+
+    edge2->twin = edge5;
+
+    edge1->next = edge2;
+    edge2->next = edge3;
+    edge3->next = edge1;
+    edge4->next = edge7;
+    edge5->next = edge4;
+    edge6->next = edge5;
+    edge7->next = edge6;
+
+
+    this->m_edge = edge1;
+    */
 }
 
 void HalfEdgeWidget::paintEvent(QPaintEvent *event)
@@ -28,7 +78,7 @@ void HalfEdgeWidget::paintEvent(QPaintEvent *event)
 void HalfEdgeWidget::drawMesh(QSet<Face*>* set, HalfEdge* edge, QPainter& painter)
 {
     HalfEdge* auxEdge = edge;
-    int i = 0;
+    //int i = 0;
 
     if(auxEdge == nullptr)
         return;

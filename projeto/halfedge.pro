@@ -57,21 +57,21 @@ HEADERS += \
     src/MainWindow.h \
     src/halfedge.h \
     src/point.h \
-    src/widgettest.h \
     src/vertex.h \
     src/face.h \
-    src/io.h
+    src/io.h \
+    src/halfedgewidget.h
 
 # Arquivos .cpp
 SOURCES += \
     src/MainWindow.cpp \
     src/halfedge.cpp \
     src/point.cpp \
-    src/widgettest.cpp \
     src/main.cpp \
     src/vertex.cpp \
     src/face.cpp \
-    src/io.cpp
+    src/io.cpp \
+    src/halfedgewidget.cpp
 
 # Arquivos dos resources (imagens por exemplo)
 RESOURCES += halfedge.qrc

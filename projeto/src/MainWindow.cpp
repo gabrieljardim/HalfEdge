@@ -4,17 +4,15 @@
 
 MainWindow::MainWindow()
 {
-    QIcon op(":open");
-
     int w = 700;
     int h = 700;
 
-
     widgetTest = new HalfEdgeWidget(this);
 
+    //Comentar em caso de bug na leitura do arquivo
     recebeArquivo(":halfEdgeFile");
 
-    setWindowTitle("QT Raytrace 0.1");
+    setWindowTitle("HalfEdge");
     setFixedSize(w, h);
 
     widgetTest->resize(300,300);

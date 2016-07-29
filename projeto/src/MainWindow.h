@@ -2,7 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QtWidgets>
-#include "widgettest.h"
+#include "halfedgewidget.h"
 
 class MainWindow : public QMainWindow
 {
