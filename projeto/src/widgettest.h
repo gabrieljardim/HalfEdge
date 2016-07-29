@@ -12,7 +12,7 @@ class WidgetTest : public QWidget
 {
 public:
     WidgetTest(QWidget* parent);
-    void paintEvent();
+    void paintEvent(QPaintEvent *event);
     void drawMesh(QSet<Face*>*set, HalfEdge* edge, QPainter& painter);
 
 public slots:

@@ -9,6 +9,8 @@
 WidgetTest::WidgetTest(QWidget* parent) : QWidget(parent)
 {
    //teste para desenhar malha
+
+
    Face* face1 = new Face();
    Face* face2 = new Face();
 
@@ -27,6 +29,8 @@ WidgetTest::WidgetTest(QWidget* parent) : QWidget(parent)
    HalfEdge* edge5 = new HalfEdge(face2, vertex3, edge2, nullptr);
    HalfEdge* edge6 = new HalfEdge(face2, vertex4, nullptr, nullptr);
    HalfEdge* edge7 = new HalfEdge(face2, vertex5, nullptr, nullptr);
+
+
 
    face1->edge = edge1;
    face2->edge = edge5;
@@ -48,10 +52,11 @@ WidgetTest::WidgetTest(QWidget* parent) : QWidget(parent)
    edge6->next = edge5;
    edge7->next = edge6;
 
+
    this->m_edge = edge1;
 }
 
-void WidgetTest::paintEvent()
+void WidgetTest::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
@@ -68,7 +73,8 @@ void WidgetTest::drawMesh(QSet<Face*>* set, HalfEdge* edge, QPainter& painter)
     HalfEdge* auxEdge = edge;
     int i = 0;
 
-    if(auxEdge == nullptr) return;
+    if(auxEdge == nullptr)
+        return;
 
     qDebug() << "Minha face: " << auxEdge->face;
 
@@ -106,7 +112,7 @@ void WidgetTest::drawMesh(QSet<Face*>* set, HalfEdge* edge, QPainter& painter)
 
         auxEdge = auxEdge->next;
 
-    } while((auxEdge != nullptr) && (auxEdge != m_edge));
+    } while((auxEdge != nullptr) && (auxEdge != edge));
 
     qDebug() << *set;
 }
